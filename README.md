@@ -1,3 +1,5 @@
+# File Uploader 
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -5,32 +7,67 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm i
+npm run db:generate
+npm run db:push
+npm run dev # for local run of development server
+npm run build
+npm run start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Libraries used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+** Shadcn - UI Components
+** Zod - Form and Runtime validations
+** Drizzle - Mysql ORM
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Shadcn for components
 
-## Deploy on Vercel
+* Button
+* Card
+* Form
+* Input
+* Label
+* Toast
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Features
+1. File Upload:
+    - feature that allows users to upload files of various types (e.g., images, excel documents).
+    - Prevents other types of files to be uploaded (PDF not allowed)
+    - File size Limit of 5 MB.
+
+2. Data Storage:
+
+    - Metadata about the uploaded file stored on MySQL. :
+
+        - File name
+        - File size
+        - Upload date
+        - Upload URL
+        - File type
+
+    - Use of Connection Pool for MySQL.
+
+3. User Interface:
+
+    - Page URL: [/upload](http://localhost:3000/upload)
+    - Displays a list of uploaded files with their filename (overflow handled via CSS property ellipsis).
+    - Toast message as a visual indicator for successful uploads and failures.
+
+4. Form Validations :
+
+    - No file added
+    - File size exceeding the limit
+    - Unsupported file type
+
+5. Bonus Features (Optional):
+
+  - Implement file preview for uploaded image files and icon for documents.
+  - delete uploaded files from DB and blob storage.
