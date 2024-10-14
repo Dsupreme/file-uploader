@@ -2,7 +2,6 @@ import { insertFile } from "@/app/actions";
 import { db } from "@/db";
 import { filesTable } from "@/db/schema";
 import { NextRequest } from "next/server";
-
 import * as fs from "fs/promises";
 
 export async function GET() {
@@ -10,6 +9,7 @@ export async function GET() {
   data = data.map((file: any) => ({
     ...file,
     url: "/" + file.url,
+    // url: "/public/" + file.url,
   }));
   return Response.json({ data });
 }
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const buffer = Buffer.from(await file.arrayBuffer());
-    await fs.writeFile("./public/uploads/" + file.name, buffer);
+    await fs.writeFile(process.cwd() + "/public/uploads/" + file.name, buffer);
     await insertFile({
       name: file.name,
       size: file.size,

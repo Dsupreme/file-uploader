@@ -20,7 +20,6 @@ export default function UploadedFilesCard({
   uploadedFiles,
   onRemove,
 }: UploadedFilesCardProps) {
-  console.log(uploadedFiles);
   const upload = useMemo(
     () => (
       <div className="w-full">
@@ -61,11 +60,11 @@ export default function UploadedFilesCard({
                       className="relative flex flex-col justify-between text-center shadow-md hover:shadow-2xl px-6 py-4"
                     >
                       <div className="relative w-60 aspect-square">
-                        <Image
+                        {/* Using img instead of next/Image is intentional to work around serving dynamically added files in public */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={file.url}
                           alt={file.name}
-                          fill
-                          sizes="(min-width: 640px) 640px, 100vw"
                           loading="lazy"
                           className="rounded-md object-cover"
                         />

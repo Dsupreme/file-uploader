@@ -4,18 +4,29 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+* Ensure MySQL is setup
+
+* Update .env file to match credentials
+
+* Create Database on MySQL server 
+
+```mysql
+    CREATE DATABASE `ea`;
+```
+
+
 First, run the development server:
 
 ```bash
-npm i
-npm run db:generate
+npm install --force #Force added to ignore unresolved typescript version mismatch
+npm run db:generate # to generate sql queries to generate db structure based on schema
 npm run db:push
 npm run dev # for local run of development server
 npm run build
-npm run start
+npx env-cmd -f .env.example --use-shell "node server.js"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/upload](http://localhost:3000/upload) with your browser to see the result.
 
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
@@ -23,9 +34,9 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Libraries used
 
-** Shadcn - UI Components
-** Zod - Form and Runtime validations
-** Drizzle - Mysql ORM
+* Shadcn - UI Components
+* Zod - Form and Runtime validations
+* Drizzle - Mysql ORM
 
 Shadcn for components
 
@@ -37,7 +48,7 @@ Shadcn for components
 * Toast
 
 
-Features
+## Features
 1. File Upload:
     - feature that allows users to upload files of various types (e.g., images, excel documents).
     - Prevents other types of files to be uploaded (PDF not allowed)
@@ -69,5 +80,14 @@ Features
 
 5. Bonus Features (Optional):
 
-  - Implement file preview for uploaded image files and icon for documents.
-  - delete uploaded files from DB and blob storage.
+    - Implemented file preview for uploaded image files and icon for documents.
+    - Delete uploaded files from DB and blob storage.
+
+
+## Assumptions
+
+Following cases have not been handled yet
+
+  - Uploading same file twice
+  - Different users uploading file with same name (as no Auth layer is implemented)
+  - As we are using local server for storing image files, code will only work in the current working directly

@@ -3,7 +3,6 @@ import { filesTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function insertFile(file: any) {
-  console.log(file);
   await db.insert(filesTable).values({
     name: file.name,
     size: file.size,
