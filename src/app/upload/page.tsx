@@ -132,6 +132,7 @@ export default function Upload() {
                         disabled={isUpdating}
                         className="hidden"
                         hidden
+                        data-testid={"file-input"}
                       />
                       {!field.value && (
                         <p
@@ -164,7 +165,7 @@ export default function Upload() {
                       )}
                     </>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage data-testid="error-message" />
                 </FormItem>
               </div>
             )}

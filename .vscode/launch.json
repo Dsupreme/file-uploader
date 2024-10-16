@@ -1,0 +1,29 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // {
+
+    // "program": "${workspaceFolder}\\src\\__tests__\\page.test.tsx",
+    // "outFiles": [
+    //     "${workspaceFolder}/**/*.js"
+    // ]
+    // }
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program (with FNM)",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "externalTerminal",
+      // "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      // "program": "${workspaceFolder}/index.js",
+
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "jest"],
+      "restart": true
+    }
+  ]
+}
